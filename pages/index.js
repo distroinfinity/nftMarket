@@ -16,7 +16,9 @@ export default function Home() {
   }, []);
   async function loadNFTs() {
     /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc-mumbai.maticvigil.com"
+    );
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider);
     const marketContract = new ethers.Contract(
       nftmarketaddress,
@@ -24,6 +26,7 @@ export default function Home() {
       provider
     );
     const data = await marketContract.fetchMarketItems();
+    console.log("data ", data);
 
     /*
      *  map over items returned from smart contract and format
@@ -32,7 +35,22 @@ export default function Home() {
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenUri = await tokenContract.tokenURI(i.tokenId);
-        const meta = await axios.get(tokenUri);
+        console.log(tokenUri);
+
+        // const meta = await axios.get(tokenUri,{ crossdomain: true });
+        let meta;
+        await fetch(tokenUri, {
+          method: "GET",
+          mode: "no-cors",
+        })
+          .then((response) => {
+            console.log("resp ",response);
+            meta=response
+          })
+          .catch((err) => {
+            console.log("err ",err);
+          });
+        console.log(meta);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         let item = {
           price,

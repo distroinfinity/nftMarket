@@ -37,19 +37,8 @@ export default function Home() {
         const tokenUri = await tokenContract.tokenURI(i.tokenId);
         console.log(tokenUri);
 
-        // const meta = await axios.get(tokenUri,{ crossdomain: true });
-        let meta;
-        await fetch(tokenUri, {
-          method: "GET",
-          mode: "no-cors",
-        })
-          .then((response) => {
-            console.log("resp ",response);
-            meta=response
-          })
-          .catch((err) => {
-            console.log("err ",err);
-          });
+        const meta = await axios.get(tokenUri, { crossdomain: true });
+        // const meta = await fetch(tokenUri, { mode: "no-cors" });
         console.log(meta);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         let item = {
@@ -97,38 +86,52 @@ export default function Home() {
     );
 
   return (
-    <div className="flex justify-center">
-      <div className="px-4" style={{ maxWidth: "1600px" }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-          {nfts.map((nft, i) => (
-            <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} />
-              <div className="p-4">
-                <p
-                  style={{ height: "64px" }}
-                  className="text-2xl font-semibold"
-                >
-                  {nft.name}
-                </p>
-                <div style={{ height: "70px", overflow: "hidden" }}>
-                  <p className="text-gray-400">{nft.description}</p>
+    <div className="flex flex-col justify-center">
+      {loadingState !== "loaded" ? (
+        <div class="flex justify-center items-center">
+          <div
+            class="
+      animate-spin
+      rounded-full
+      h-32
+      w-32
+      border-t-2 border-b-2 border-purple-500
+    "
+          ></div>
+        </div>
+      ) : (
+        <div className="px-4" style={{ maxWidth: "1600px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+            {nfts.map((nft, i) => (
+              <div key={i} className="border shadow rounded-xl overflow-hidden">
+                <img src={nft.image} />
+                <div className="p-4">
+                  <p
+                    style={{ height: "64px" }}
+                    className="text-2xl font-semibold"
+                  >
+                    {nft.name}
+                  </p>
+                  <div style={{ height: "70px", overflow: "hidden" }}>
+                    <p className="text-gray-400">{nft.description}</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-black">
+                  <p className="text-2xl mb-4 font-bold text-white">
+                    {nft.price} MATIC
+                  </p>
+                  <button
+                    className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
+                    onClick={() => buyNft(nft)}
+                  >
+                    Buy
+                  </button>
                 </div>
               </div>
-              <div className="p-4 bg-black">
-                <p className="text-2xl mb-4 font-bold text-white">
-                  {nft.price} ETH
-                </p>
-                <button
-                  className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

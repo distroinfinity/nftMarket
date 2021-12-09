@@ -88,9 +88,9 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center">
       {loadingState !== "loaded" ? (
-        <div class="flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <div
-            class="
+            className="
       animate-spin
       rounded-full
       h-32

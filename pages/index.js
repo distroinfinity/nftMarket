@@ -1,8 +1,9 @@
 /* pages/index.js */
 import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Web3Modal from "web3modal";
+import Modal from "../components/Modall";
 
 import { nftaddress, nftmarketaddress } from "../config";
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
@@ -57,6 +58,14 @@ export default function Home() {
     setLoadingState("loaded");
   }
 
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = useCallback(() => {
+    setShowModal(!showModal);
+  }, [showModal]);
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false);
+  }, []);
+
   async function buyNft(nft) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     const web3Modal = new Web3Modal();
@@ -75,6 +84,7 @@ export default function Home() {
       }
     );
     await transaction.wait();
+    setShowModal(true);
     loadNFTs();
   }
 
@@ -139,6 +149,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      {showModal && <Modal title="Congrats...." onConfirm={handleCloseModal} />}
     </div>
   );
 }

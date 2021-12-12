@@ -115,7 +115,7 @@ export default function CreateItem() {
         {fileUrl && <img className="rounded mt-4" width="350" src={fileUrl} alt="nft image"/>}
         <button
           onClick={createMarket}
-          className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
+          className="font-bold mt-4 bg-purple-500 text-white rounded p-4 shadow-lg"
         >
           Create Digital Asset
         </button>

@@ -1,7 +1,7 @@
 /* pages/_app.js */
 import "../styles/globals.css";
-import Head from 'next/head';
-import { Navbar } from '../components/Navbar';
+import Head from "next/head";
+import { Navbar } from "../components/Navbar";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +11,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Component {...pageProps} />
+      <div className="container my-12 mx-auto px-4 md:px-12">
+        <Component {...pageProps} />
+      </div>
     </div>
   );
 }

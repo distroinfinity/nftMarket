@@ -103,8 +103,15 @@ export default function Home() {
         <div className="px-4" style={{ maxWidth: "1600px" }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+              <div
+                key={i}
+                className="border hover:shadow-lg rounded-lg overflow-hidden"
+              >
+                <img
+                  src={nft.image}
+                  style={{ height: "200px", width: "auto" }}
+                  className="rounded-lg overflow-hidden mx-auto m-4"
+                />
                 <div className="p-4">
                   <p
                     style={{ height: "64px" }}
@@ -121,7 +128,7 @@ export default function Home() {
                     {nft.price} MATIC
                   </p>
                   <button
-                    className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
+                    className="w-full bg-purple-500 text-white font-bold py-2 px-12 rounded"
                     onClick={() => buyNft(nft)}
                   >
                     Buy

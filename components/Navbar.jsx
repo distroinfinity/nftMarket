@@ -9,7 +9,7 @@ export const Navbar = () => {
   };
   return (
     <div>
-      <nav className="flex items-center flex-wrap bg-pink-500 p-3 ">
+      <nav className="flex items-center flex-wrap bg-purple-500 p-3 ">
         <Link href="/">
           <a className="p-2 mr-4 ">
             <span className="text-xl text-white font-bold uppercase tracking-wide">
@@ -18,7 +18,7 @@ export const Navbar = () => {
           </a>
         </Link>
         <button
-          className=" inline-flex p-3 hover:bg-pink-700 rounded lg:hidden text-white ml-auto hover:text-white outline-none"
+          className=" inline-flex p-3 hover:bg-purple-700 rounded lg:hidden text-white ml-auto hover:text-white outline-none"
           onClick={handleClick}
         >
           <svg
@@ -43,22 +43,22 @@ export const Navbar = () => {
         >
           <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
             <Link href="/">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-pink-700 hover:text-white">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-purple-700 hover:text-white">
                 Home
               </a>
             </Link>
             <Link href="/create-item">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-pink-700 hover:text-white">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-purple-700 hover:text-white">
                 Sell Digital Asset
               </a>
             </Link>
             <Link href="/my-assets">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-pink-700 hover:text-white">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-purple-700 hover:text-white">
                 My Digital Assets
               </a>
             </Link>
             <Link href="/creator-dashboard">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-pink-700 hover:text-white">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-purple-700 hover:text-white">
                 Creator Dashboard
               </a>
             </Link>
